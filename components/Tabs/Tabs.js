@@ -3,9 +3,7 @@ class TabLink {
     this.tabElement = tabElement;
     this.tabData = tabElement.dataset.tab; 
     (this.tabData === "all") ? this.cards = document.querySelectorAll('.card') : this.cards = document.querySelectorAll(`.card[data-tab="${this.tabData}"]`);
-    console.log('this.cards',this.cards);
     this.cards = Array.from(this.cards).map( cardInfo => { return new TabCard(cardInfo); });
-    console.log('this.cardsArr Array',this.cards);
     this.tabElement.addEventListener('click', () => { this.selectTab(); });
   }
 
@@ -22,7 +20,6 @@ class TabLink {
     this.tabElement.classList.add('active-tab');
     // Notice we are looping through the this.cards array and invoking selectCard()
     // from the TabCard class. Just un-comment the code and study what is happening here.
-    console.log('this.cards',this.cards);
     this.cards.forEach(card => card.selectCard());
   }
 }
