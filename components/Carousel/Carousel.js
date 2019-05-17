@@ -41,7 +41,6 @@ class Carousel {
     }
 
     nextImg() {
-        console.log('this',this);
         let nextID = parseInt(this.getCurrentImgID()) + 1;
         if(nextID === this.numberOfImgs) { nextID = 0; }
         document.querySelector(`.carousel [data-id="${nextID}`).animate([
