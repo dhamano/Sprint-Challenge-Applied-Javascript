@@ -9,6 +9,7 @@ class Carousel {
         this.currentImgId = document.querySelector('.carousel img[data-default]').dataset.id;
         this.numberOfImgs = this.carouselImgsNum.length;
         this.setupCarousel();
+        this.interval = setInterval(this.nextImg.bind(this), 8000);
     }
 
     setCurrentImg(id) {
@@ -29,12 +30,27 @@ class Carousel {
     previousImg() {
         let previousID = this.getCurrentImgID() - 1;
         if(previousID < 0) { previousID = parseInt(this.numberOfImgs) - 1; }
+        document.querySelector(`.carousel [data-id="${previousID}`).animate([
+            { transform: 'translate3D(-100%, 0, 0)' }, 
+            { transform: 'translate3D(0, 0, 0)' }
+          ], {
+            duration: 750,
+            iterations: 1
+          })
         this.showImg(previousID, "previous");
     }
 
     nextImg() {
+        console.log('this',this);
         let nextID = parseInt(this.getCurrentImgID()) + 1;
         if(nextID === this.numberOfImgs) { nextID = 0; }
+        document.querySelector(`.carousel [data-id="${nextID}`).animate([
+            { transform: 'translate3D(100%, 0, 0)' }, 
+            { transform: 'translate3D(0, 0, 0)' }
+          ], {
+            duration: 750,
+            iterations: 1
+          })
         this.showImg(nextID, "next");
     }
 
